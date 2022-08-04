@@ -75,6 +75,8 @@ public class Vm {
 
 	/** The mips allocation history. */
 	private final List<VmStateHistoryEntry> stateHistory = new LinkedList<VmStateHistoryEntry>();
+	
+	private String name;
 
 	/**
 	 * Creates a new VMCharacteristics object.
@@ -605,5 +607,14 @@ public class Vm {
 		}
 		getStateHistory().add(newState);
 	}
+	
+	public String getName() {
+        return name;
+	}
+
+	public void setName(String name) {
+        this.name = name;
+	}
+
 
 }

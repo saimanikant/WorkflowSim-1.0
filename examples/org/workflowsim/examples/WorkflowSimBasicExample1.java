@@ -97,7 +97,7 @@ public class WorkflowSimBasicExample1 {
             /**
              * Should change this based on real physical path
              */
-            String daxPath = "/Users/weiweich/NetBeansProjects/WorkflowSim-1.0/config/dax/Montage_100.xml";
+            String daxPath = "C:/Users/saima/git/WorkflowSim-1.0/config/dax/Inspiral_30.xml";
             File daxFile = new File(daxPath);
             if (!daxFile.exists()) {
                 Log.printLine("Warning: Please replace daxPath with the physical path in your working environment!");
@@ -168,6 +168,7 @@ public class WorkflowSimBasicExample1 {
             CloudSim.startSimulation();
             List<Job> outputList0 = wfEngine.getJobsReceivedList();
             CloudSim.stopSimulation();
+            //Log.printLine("I'm HERE MANI in example");
             printJobList(outputList0);
         } catch (Exception e) {
             Log.printLine("The simulation has been terminated due to an unexpected error");

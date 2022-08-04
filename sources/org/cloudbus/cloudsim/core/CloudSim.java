@@ -597,8 +597,18 @@ public class CloudSim {
 	public static void send(int src, int dest, double delay, int tag, Object data) {
 		if (delay < 0) {
 			throw new IllegalArgumentException("Send delay can't be negative.");
+		}		
+		//delay = 100;
+		if (src == 5 && dest == 6 && tag == 21) {
+			System.out.println("In SEND");
+			System.out.println(data);
+			//delay = 10;
 		}
-
+		/*System.out.println("In SEND");
+		System.out.println(data);
+		System.out.println(src);
+		System.out.println(dest);
+		System.out.println(tag);*/
 		SimEvent e = new SimEvent(SimEvent.SEND, clock + delay, src, dest, tag, data);
 		future.addEvent(e);
 	}

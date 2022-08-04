@@ -10,6 +10,7 @@ package org.cloudbus.cloudsim;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.LinkedHashMap;
 
 import org.cloudbus.cloudsim.core.CloudSim;
 
@@ -43,6 +44,8 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
 
 	/** The used PEs. */
 	protected int usedPes;
+	
+	List<LinkedHashMap<String, Object>> taskList;
 
 	/**
 	 * Creates a new CloudletSchedulerSpaceShared object. This method must be invoked before
@@ -60,6 +63,17 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
 		usedPes = 0;
 		currentCpus = 0;
 	}
+	
+	public CloudletSchedulerSpaceShared(List<LinkedHashMap<String, Object>> arr) {
+        super();
+        cloudletWaitingList = new ArrayList<ResCloudlet>();
+        cloudletExecList = new ArrayList<ResCloudlet>();
+        cloudletPausedList = new ArrayList<ResCloudlet>();
+        cloudletFinishedList = new ArrayList<ResCloudlet>();
+        usedPes = 0;
+        currentCpus = 0;
+        this.taskList = arr;
+    }
 
 	/**
 	 * Updates the processing of cloudlets running under management of this scheduler.

@@ -376,6 +376,8 @@ public final class WorkflowEngine extends SimEntity {
      */
     @SuppressWarnings("unchecked")
     public <T extends Cloudlet> List<T> getJobsList() {
+    	//Log.printLine("PRINTING JOBS LIST");
+    	//jobsList.forEach(System.out::println);
         return (List<T>) jobsList;
     }
 
@@ -418,6 +420,9 @@ public final class WorkflowEngine extends SimEntity {
      */
     @SuppressWarnings("unchecked")
     public <T extends Cloudlet> List<T> getJobsReceivedList() {
+    	//Log.printLine(this.jobsReceivedList);
+    	//jobsReceivedList.forEach(System.out::println);
+    	//Log.printLine("I'm HERE MANI!");
         return (List<T>) jobsReceivedList;
     }
 
@@ -428,7 +433,10 @@ public final class WorkflowEngine extends SimEntity {
      * @param cloudletReceivedList the new job received list
      */
     private <T extends Cloudlet> void setJobsReceivedList(List<T> jobsReceivedList) {
+    	//Log.printLine("I'm HERE MANI MANI MANI MANI");   
         this.jobsReceivedList = jobsReceivedList;
+        //Log.printLine(jobsReceivedList);
+        //Log.printLine(this.jobsReceivedList);
     }
 
     /**

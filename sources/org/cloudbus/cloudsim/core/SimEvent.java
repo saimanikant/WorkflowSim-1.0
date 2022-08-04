@@ -7,6 +7,8 @@
  */
 
 package org.cloudbus.cloudsim.core;
+import org.cloudbus.cloudsim.Log;
+
 
 /**
  * This class represents a simulation event which is passed between the entities in the simulation.
@@ -201,6 +203,8 @@ public class SimEvent implements Cloneable, Comparable<SimEvent> {
 	 * @return A reference to the data
 	 */
 	public Object getData() {
+		//Log.printLine("PRINTING JOBS LIST");
+		//Log.printLine(data);
 		return data;
 	}
 
