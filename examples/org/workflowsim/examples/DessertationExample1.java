@@ -226,6 +226,10 @@ public class DessertationExample1{
              * Create a list of VMs.The userId of a vm is basically the id of
              * the scheduler that controls this vm.
              */
+            
+            //System.out.print("HERE I AM");
+            System.out.print(arr);
+            //System.out.print("THis is me");
             List<CondorVM> vmlist0 = createVMs(wfEngine.getSchedulerId(0), Parameters.getVmNum(), seed, arr);
             /**
              * Submits this list of vms to this WorkflowEngine.

@@ -60,6 +60,10 @@ public abstract class CloudletScheduler {
 	 * @post $none
 	 */
 	public abstract double cloudletSubmit(Cloudlet gl, double fileTransferTime);
+	
+	// Dissertation
+	
+	public abstract double getpcpuvalue(Cloudlet cloudlet, double fileTransferTime, Vm vm);
 
 	/**
 	 * Receives an cloudlet to be executed in the VM managed by this scheduler.

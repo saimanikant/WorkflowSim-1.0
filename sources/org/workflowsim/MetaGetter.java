@@ -111,7 +111,7 @@ public class MetaGetter {
         if (arr == null) {
 
             try {
-                java.io.File f = new java.io.File("C:/Users/saima/git/WorkSim-PredError/src/main/resources/config/runtimes/runtimes_pp.json");
+                java.io.File f = new java.io.File("C:/Users/saima/git/WorkflowSim-1.0/config/runtimes/runtimes_uti_pp.json");
                 arr = JsonPath.read(f, "$");
                 arr = arr.stream().filter(e -> ((String) e.get("wfName")).contains(MetaGetter.getWorkflow())).collect(Collectors.toList());
             } catch (IOException e) {

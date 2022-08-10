@@ -71,6 +71,12 @@ public class WorkflowDatacenter extends Datacenter {
              * cl is actually a job but it is not necessary to cast it to a job
              */
             Job job = (Job) ev.getData();
+            System.out.println("I'm in Workflow Data Center");
+            System.out.println(job.getTaskList());
+            if (job.getTaskList().size() != 0) {
+                Task task = job.getTaskList().get(0);
+                System.out.println(task);
+            }
 
             if (job.isFinished()) {
                 String name = CloudSim.getEntityName(job.getUserId());
@@ -135,6 +141,9 @@ public class WorkflowDatacenter extends Datacenter {
 
             CloudletScheduler scheduler = vm.getCloudletScheduler();
             double estimatedFinishTime = scheduler.cloudletSubmit(job, fileTransferTime);
+            double pcpu = scheduler.getpcpuvalue(job, fileTransferTime, vm);
+            System.out.println("printing pcpu value");            
+            System.out.println(pcpu);
             updateTaskExecTime(job, vm);
 
             // if this cloudlet is in the exec queue

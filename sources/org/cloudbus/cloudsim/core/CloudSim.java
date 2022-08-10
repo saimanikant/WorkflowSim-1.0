@@ -22,6 +22,8 @@ import org.cloudbus.cloudsim.core.predicates.Predicate;
 import org.cloudbus.cloudsim.core.predicates.PredicateAny;
 import org.cloudbus.cloudsim.core.predicates.PredicateNone;
 
+import org.workflowsim.Job;
+
 /**
  * This class extends the CloudSimCore to enable network simulation in CloudSim. Also, it disables
  * all the network models from CloudSim, to provide a simpler simulation of networking. In the
@@ -601,7 +603,7 @@ public class CloudSim {
 		//delay = 100;
 		if (src == 5 && dest == 6 && tag == 21) {
 			System.out.println("In SEND");
-			System.out.println(data);
+			System.out.println(data);								
 			//delay = 10;
 		}
 		/*System.out.println("In SEND");

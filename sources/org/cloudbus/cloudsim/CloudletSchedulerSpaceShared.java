@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.LinkedHashMap;
 
 import org.cloudbus.cloudsim.core.CloudSim;
+import org.workflowsim.Job;
+import org.workflowsim.MetaGetter;
+import org.workflowsim.Task;
 
 /**
  * CloudletSchedulerSpaceShared implements a policy of scheduling performed by a virtual machine. It
@@ -72,7 +75,7 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
         cloudletFinishedList = new ArrayList<ResCloudlet>();
         usedPes = 0;
         currentCpus = 0;
-        this.taskList = arr;
+        this.taskList = arr;        
     }
 
 	/**
@@ -402,8 +405,8 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
 		}
 
 		currentCpus = cpus;
-		capacity /= cpus;
-
+		capacity /= cpus;				
+        
 		// use the current capacity to estimate the extra amount of
 		// time to file transferring. It must be added to the cloudlet length
 		double extraSize = capacity * fileTransferTime;
@@ -412,6 +415,26 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
 		cloudlet.setCloudletLength(length);
 		return cloudlet.getCloudletLength() / capacity;
 	}
+	
+	//Dissertation
+	public static double pcpu = 0.0;
+	public double getpcpuvalue(Cloudlet cloudlet, double fileTransferTime, Vm vm) {					
+		Job job = (Job) cloudlet;				
+		if (job.getTaskList().size() != 0) {                  
+			Task task = job.getTaskList().get(0);			
+		    this.taskList.stream().filter(e -> ((String) e.get("wfName")).contains(MetaGetter.getWorkflow())).forEach(entry -> {
+		            if (task.getType().contains(((String) entry.get("taskName"))) &&
+		                    vm.getName().equals((String) entry.get("instanceType"))) {
+		            	System.out.println(entry.get("taskName"));
+		            	pcpu = (double)entry.get("pCpu");	            	
+		            }
+		            
+		    });	
+		    task.setpCpu(pcpu);
+	    }		
+		return pcpu;       				
+	}
+	// END of Dissertation
 
 	/*
 	 * (non-Javadoc)

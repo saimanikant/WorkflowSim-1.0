@@ -71,6 +71,10 @@ public class Task extends Cloudlet {
      * update finish_time)
      */
     private double taskFinishTime;
+    
+    // Dissertation stuff
+    
+    private double pCpu;
 
     /**
      * Allocates a new Task object. The task length should be greater than or
@@ -100,6 +104,15 @@ public class Task extends Cloudlet {
         this.fileList = new ArrayList<>();
         this.impact = 0.0;
         this.taskFinishTime = -1.0;
+        this.pCpu = 0.0;
+    }
+    
+    public void setpCpu(double pCpu) {
+        this.pCpu = pCpu;
+    }
+    
+    public double getpCpu() {
+        return this.pCpu;
     }
 
     /**
