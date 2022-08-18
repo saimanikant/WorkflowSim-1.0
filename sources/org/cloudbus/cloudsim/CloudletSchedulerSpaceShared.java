@@ -425,15 +425,16 @@ public class CloudletSchedulerSpaceShared extends CloudletScheduler {
 		    this.taskList.stream().filter(e -> ((String) e.get("wfName")).contains(MetaGetter.getWorkflow())).forEach(entry -> {
 		            if (task.getType().contains(((String) entry.get("taskName"))) &&
 		                    vm.getName().equals((String) entry.get("instanceType"))) {
-		            	System.out.println(entry.get("taskName"));
-		            	pcpu = (double)entry.get("pCpu");	            	
+		            	pcpu = (double)entry.get("pCpu");
 		            }
 		            
-		    });	
-		    task.setpCpu(pcpu);
+		    });			    
+		    task.setpCpu(pcpu);		    	   
 	    }		
 		return pcpu;       				
 	}
+	
+	
 	// END of Dissertation
 
 	/*

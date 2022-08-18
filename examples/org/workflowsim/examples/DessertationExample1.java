@@ -354,7 +354,8 @@ public class DessertationExample1{
         Log.printLine("========== OUTPUT ==========");
         Log.printLine("Job ID" + indent + "Task ID" + indent + "STATUS" + indent
                 + "Data center ID" + indent + "VM ID" + indent + indent
-                + "Time" + indent + "Start Time" + indent + "Finish Time" + indent + "Depth");
+                + "Time" + indent + indent + indent + indent + "Start Time" + indent + indent + indent + indent + "Finish Time" + indent + "Depth" + indent + indent + "pCpu"
+                + indent + indent + indent + "Power" + indent + indent + indent + "emissions");
         DecimalFormat dft = new DecimalFormat("###.##");
         for (Job job : list) {
             Log.print(indent + job.getCloudletId() + indent + indent);
@@ -374,13 +375,19 @@ public class DessertationExample1{
                     Log.printLine(indent + indent +  job.getResourceId() +")"+ indent + indent + indent + job.getVmId()
                             + indent + indent + indent + dft.format(job.getActualCPUTime())
                             + indent + indent + dft.format(job.getExecStartTime()) + indent + indent + indent
-                            + dft.format(job.getFinishTime()) + indent + indent + indent + job.getDepth());
+                            + dft.format(job.getFinishTime()) + indent + indent + indent + job.getDepth()
+                            + indent + indent + indent + job.getpCpu()
+                            + indent + indent + indent + dft.format(job.getpCpu()/Double.parseDouble(dft.format(job.getActualCPUTime())))
+                            + indent + indent + indent + indent + indent + indent + job.getemissions());
                 } else {
                     Log.print("SUCCESS");
                     Log.printLine(indent + indent + job.getTaskList().get(0).getType() +"(" + job.getResourceId() +")"+ indent + indent + indent + job.getVmId()
                             + indent + indent + indent + dft.format(job.getActualCPUTime())
                             + indent + indent + dft.format(job.getExecStartTime()) + indent + indent + indent
-                            + dft.format(job.getFinishTime()) + indent + indent + indent + job.getDepth());
+                            + dft.format(job.getFinishTime()) + indent + indent + indent + job.getDepth()
+                            + indent + indent + indent + job.getpCpu()
+                            + indent + indent + indent + dft.format(job.getpCpu()/Double.parseDouble(dft.format(job.getActualCPUTime())))
+                            + indent + indent + indent + indent + indent + indent + job.getemissions());
                 }
 
             } else if (job.getCloudletStatus() == Cloudlet.FAILED) {
@@ -388,7 +395,10 @@ public class DessertationExample1{
                 Log.printLine(indent + indent + job.getResourceId() + indent + indent + indent + job.getVmId()
                         + indent + indent + indent + dft.format(job.getActualCPUTime())
                         + indent + indent + dft.format(job.getExecStartTime()) + indent + indent + indent
-                        + dft.format(job.getFinishTime()) + indent + indent + indent + job.getDepth());
+                        + dft.format(job.getFinishTime()) + indent + indent + indent + job.getDepth()
+                        + indent + indent + indent + job.getpCpu()
+                        + indent + indent + indent + dft.format(job.getpCpu()/Double.parseDouble(dft.format(job.getActualCPUTime())))
+                        + indent + indent + indent + indent + indent + indent + job.getemissions());
             }
         }
     }

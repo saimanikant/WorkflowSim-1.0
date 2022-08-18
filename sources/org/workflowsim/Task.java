@@ -75,6 +75,8 @@ public class Task extends Cloudlet {
     // Dissertation stuff
     
     private double pCpu;
+    
+    private double emissions;
 
     /**
      * Allocates a new Task object. The task length should be greater than or
@@ -105,6 +107,7 @@ public class Task extends Cloudlet {
         this.impact = 0.0;
         this.taskFinishTime = -1.0;
         this.pCpu = 0.0;
+        this.emissions = 0.0;
     }
     
     public void setpCpu(double pCpu) {
@@ -113,6 +116,14 @@ public class Task extends Cloudlet {
     
     public double getpCpu() {
         return this.pCpu;
+    }
+    
+    public void setemissions(double emissions) {
+        this.emissions = emissions;
+    }
+    
+    public double getemissions() {
+        return this.emissions;
     }
 
     /**

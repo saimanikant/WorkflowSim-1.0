@@ -5,6 +5,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn import metrics
 import matplotlib.pyplot as plt
 import csv
+import sys
 
 # Read the data from the csv file
 #df1 = pd.read_csv('AWS EC2 Carbon Footprint Dataset - EC2 Instances Dataset.csv')
@@ -50,7 +51,8 @@ def plot_regression_line(x, y, b):
 
 def main():
 	# observations / data	
-	with open("AWS EC2 Carbon Footprint Dataset - EC2 Instances Dataset.csv", 'r') as file:
+	instance_type = str(sys.argv[1])
+	with open("C:/Users/saima/git/WorkflowSim-1.0/config/AWS EC2 Carbon Footprint Dataset - EC2 Instances Dataset.csv", 'r') as file:
 		csvreader = csv.reader(file)
 		i = 0
 		for row in csvreader:
@@ -59,16 +61,23 @@ def main():
 				pass		
 			else:
 				y = np.array([float(row[27].replace(',', '.')), float(row[28].replace(',', '.')), float(row[29].replace(',', '.')), float(row[30].replace(',', '.'))])
-				print(y)
+				if (instance_type == row[0]):
+					break
 	x = np.array([0, 10, 50, 100])
 
 	# estimating coefficients
 	b = estimate_coef(x, y)
-	print("Estimated coefficients:\nb_0 = {} \
-		\nb_1 = {}".format(b[0], b[1]))
+	#print("Estimated coefficients:\nb_0 = {} \nb_1 = {}".format(b[0], b[1]))
+
+	x1 = float(str(sys.argv[2]))
+	y_pred = b[0] + b[1]*x1
+	print(y_pred)
+
+	np.append(x, x1)
+	np.append(y, y_pred)
 
 	# plotting regression line
-	plot_regression_line(x, y, b)
+	# plot_regression_line(x, y, b)
 
 if __name__ == "__main__":
 	main()

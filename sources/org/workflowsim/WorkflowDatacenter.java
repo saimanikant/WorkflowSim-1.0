@@ -17,6 +17,7 @@ package org.workflowsim;
 
 import java.util.Iterator;
 import java.util.List;
+import java.io.*;
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.CloudletScheduler;
 import org.cloudbus.cloudsim.Consts;
@@ -72,7 +73,6 @@ public class WorkflowDatacenter extends Datacenter {
              */
             Job job = (Job) ev.getData();
             System.out.println("I'm in Workflow Data Center");
-            System.out.println(job.getTaskList());
             if (job.getTaskList().size() != 0) {
                 Task task = job.getTaskList().get(0);
                 System.out.println(task);
@@ -142,8 +142,30 @@ public class WorkflowDatacenter extends Datacenter {
             CloudletScheduler scheduler = vm.getCloudletScheduler();
             double estimatedFinishTime = scheduler.cloudletSubmit(job, fileTransferTime);
             double pcpu = scheduler.getpcpuvalue(job, fileTransferTime, vm);
-            System.out.println("printing pcpu value");            
-            System.out.println(pcpu);
+            job.setpCpu(pcpu);
+            String s = null;
+            @SuppressWarnings("deprecation")
+			Process p = Runtime.getRuntime().exec("python C:/Users/saima/git/WorkflowSim-1.0/config/carbon.py " + 
+            vm.getName() + " " + pcpu);
+            double emission;
+            BufferedReader stdInput = new BufferedReader(new 
+                    InputStreamReader(p.getInputStream()));
+
+            BufferedReader stdError = new BufferedReader(new 
+                    InputStreamReader(p.getErrorStream()));
+
+            // read the output from the command
+            //System.out.println("Here is the standard output of the command:\n");
+            while ((s = stdInput.readLine()) != null) {
+            	emission = Double.parseDouble(s);
+            	job.setemissions(emission);
+            }                         
+            // read any errors from the attempted command
+            //System.out.println("Here is the standard error of the command (if any):\n");
+            while ((s = stdError.readLine()) != null) {
+                System.out.println(s);
+            }
+            
             updateTaskExecTime(job, vm);
 
             // if this cloudlet is in the exec queue
